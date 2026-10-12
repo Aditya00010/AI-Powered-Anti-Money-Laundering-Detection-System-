@@ -1,0 +1,85 @@
+{
+  "formula_version": "v1.0.0",
+  "formula_name": "Project Vigilance AML Risk Score",
+  "description": "Baseline linear combination of supervised XGBoost calibrated likelihood and unsupervised Isolation Forest anomaly score, standardized to [0, 100].",
+  "timestamp_utc": "2026-10-06T11:34:46.871382+00:00",
+  "status": "APPROVED_BASELINE",
+  "components": {
+    "xgb_score": {
+      "name": "XGBoost Supervised Likelihood",
+      "source_model": "models/xgboost_v3_graph.joblib",
+      "model_sha256": "cb93e63eb59bd230d086620c1773a829c33970776757e798e66172aec6732f08",
+      "input_features_count": 84,
+      "raw_range": "[0.0, 1.0]",
+      "normalization_formula": "XGB_SCORE = xgb_probability * 100.0",
+      "normalized_range": "[0.0, 100.0]",
+      "weight": 0.8,
+      "justification": "Primary supervised classifier trained on ground-truth AML typologies (ROC-AUC 0.9166, Precision 97.09%, FPR 0.19%). An operational baseline weighting of 80% XGBoost and 20% Isolation Forest was selected because XGBoost demonstrated substantially stronger validated supervised precision and lower false-positive rate, while Isolation Forest provides complementary anomaly coverage including 135 AML-labeled cases missed by XGBoost at the standard threshold. The 80/20 weighting is NOT statistically optimized and is NOT derived directly from the precision ratio."
+    },
+    "if_score": {
+      "name": "Isolation Forest Unsupervised Anomaly Score",
+      "source_model": "models/isolation_forest_v3_graph.joblib",
+      "model_sha256": "e3a7faa12829e44bf85192e6bc208c8de70807309097d747558bf1f108e3e0b9",
+      "input_features_count": 80,
+      "raw_range": "[0.35, 0.73]",
+      "normalization_formula": "IF_SCORE = clip((s - 0.35) / (0.50 - 0.35) * 50.0, 0, 50) if s < 0.50 else clip(50.0 + (s - 0.50) / (0.70 - 0.50) * 50.0, 50, 100)",
+      "normalization_anchors": {
+        "boundary_0_50": "Theoretical/implementation decision boundary from Liu et al. (2008) and scikit-learn (offset_ = -0.50) where path length equals average BST depth c(n).",
+        "anchor_0_35": "Fixed operational normalization anchor representing the empirical floor of background inliers observed in the training distribution. NOT a theoretical constant; NOT tuned using 30k ground-truth labels.",
+        "anchor_0_70": "Fixed operational normalization anchor representing the empirical ceiling of extreme multidimensional outliers in the training distribution. NOT a theoretical constant; NOT tuned using 30k ground-truth labels."
+      },
+      "normalized_range": "[0.0, 100.0]",
+      "weight": 0.2,
+      "justification": "Unsupervised structural anomaly detector (ROC-AUC 0.7282, captures 135 true AML cases missed by XGBoost). Carries 20% baseline weight to provide anomaly boosting and zero-day defense without overwhelming alert queues."
+    },
+    "graph_score": {
+      "name": "Standalone Graph Risk Score",
+      "weight": 0.0,
+      "justification": "Assigned weight 0.00 to prevent double counting. All 22 Phase 3 graph features (PageRank, degrees, cycles) are already natively ingested by XGBoost and Isolation Forest."
+    },
+    "rule_score": {
+      "name": "Standalone Rule Engine Risk Score",
+      "weight": 0.0,
+      "justification": "Assigned weight 0.00 to prevent double counting and arbitrary heuristics. All rule proxies (threshold proximity, velocity spikes, multi-accounting) are already engineered features in the ML models."
+    }
+  },
+  "mathematical_formula": "FINAL_RISK_SCORE = 0.80 * XGB_SCORE + 0.20 * IF_SCORE",
+  "risk_tiers": {
+    "LOW": {
+      "min": 0.0,
+      "max": 30.0,
+      "classification": "Operational risk-prioritization tier",
+      "action": "Automated clearing or passive monitoring"
+    },
+    "MEDIUM": {
+      "min": 30.01,
+      "max": 60.0,
+      "classification": "Operational risk-prioritization tier",
+      "action": "Secondary compliance review / anomaly watchlist"
+    },
+    "HIGH": {
+      "min": 60.01,
+      "max": 80.0,
+      "classification": "Operational risk-prioritization tier",
+      "action": "Priority investigation / enhanced review"
+    },
+    "CRITICAL": {
+      "min": 80.01,
+      "max": 100.0,
+      "classification": "Operational risk-prioritization tier",
+      "action": "Highest-priority compliance investigation"
+    }
+  },
+  "compliance_disclaimer": "The scoring system prioritizes transactions for investigation; it does NOT autonomously determine that a SAR must be filed. Final SAR filing and compliance disposition remain subject to appropriate investigator/compliance review.",
+  "evaluation_summary": {
+    "evaluation_rows": 30000,
+    "note": "The 30,000 out-of-time labels were used only for retrospective validation after the scoring design was fixed. Prevalences reflect historical evaluation sample results, not guaranteed future probabilities.",
+    "score_mean": 15.049816042992775,
+    "score_median": 9.682227023189643,
+    "critical_recall": 47.00550339915831,
+    "critical_precision": 99.86244841815682,
+    "high_plus_critical_recall": 52.832631919715126,
+    "high_plus_critical_precision": 98.78934624697337,
+    "monotonicity_verified": true
+  }
+}

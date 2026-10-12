@@ -1,0 +1,71 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Environments & Secrets
+.env
+.env*.local
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+!.env.example
+!**/.env.example
+
+.venv
+.venv/
+env/
+venv/
+ENV/
+
+# Testing & Quality Assurance Caches
+.pytest_cache/
+**/.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Large Dataset Files - Project Vigilance
+data/training/*.csv
+data/training/*.xlsx
+!data/training/.gitkeep
+data/input/*
+!data/input/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/output/*
+!data/output/.gitkeep
+
+# Node.js & Frontend Build Artifacts
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+dist-ssr/
+build/
+.vite/
+.eslintcache
+
+# General Logs
+*.log
+logs/
+
+# IDE / Operating System Artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

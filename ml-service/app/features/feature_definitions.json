@@ -1,0 +1,563 @@
+{
+  "total_features": 62,
+  "features": [
+    {
+      "feature_name": "amount",
+      "category": "Transaction Core",
+      "description": "Engineered feature amount capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "log_amount",
+      "category": "Transaction Core",
+      "description": "Engineered feature log_amount capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "is_crypto",
+      "category": "Transaction Core",
+      "description": "Engineered feature is_crypto capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "currency_INR",
+      "category": "Transaction Core",
+      "description": "Engineered feature currency_INR capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "currency_USDT",
+      "category": "Transaction Core",
+      "description": "Engineered feature currency_USDT capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "channel_UPI",
+      "category": "Transaction Core",
+      "description": "Engineered feature channel_UPI capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "channel_IMPS",
+      "category": "Transaction Core",
+      "description": "Engineered feature channel_IMPS capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "channel_NEFT",
+      "category": "Transaction Core",
+      "description": "Engineered feature channel_NEFT capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "channel_Crypto_Gateway",
+      "category": "Transaction Core",
+      "description": "Engineered feature channel_Crypto_Gateway capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "channel_RTGS",
+      "category": "Transaction Core",
+      "description": "Engineered feature channel_RTGS capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "channel_Card",
+      "category": "Transaction Core",
+      "description": "Engineered feature channel_Card capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "is_cross_border",
+      "category": "Transaction Core",
+      "description": "Engineered feature is_cross_border capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "transaction_hour",
+      "category": "Temporal",
+      "description": "Engineered feature transaction_hour capturing temporal patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "transaction_weekday",
+      "category": "Temporal",
+      "description": "Engineered feature transaction_weekday capturing temporal patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "transaction_day",
+      "category": "Temporal",
+      "description": "Engineered feature transaction_day capturing temporal patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "is_weekend",
+      "category": "Temporal",
+      "description": "Engineered feature is_weekend capturing temporal patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "hour_sin",
+      "category": "Temporal",
+      "description": "Engineered feature hour_sin capturing temporal patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "hour_cos",
+      "category": "Temporal",
+      "description": "Engineered feature hour_cos capturing temporal patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_txn_count_prev_1h",
+      "category": "Velocity (Sender)",
+      "description": "Engineered feature sender_txn_count_prev_1h capturing velocity (sender) patterns.",
+      "temporal_window": "1h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_amount_sum_prev_1h",
+      "category": "Velocity (Sender)",
+      "description": "Engineered feature sender_amount_sum_prev_1h capturing velocity (sender) patterns.",
+      "temporal_window": "1h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_txn_count_prev_24h",
+      "category": "Velocity (Sender)",
+      "description": "Engineered feature sender_txn_count_prev_24h capturing velocity (sender) patterns.",
+      "temporal_window": "24h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_amount_sum_prev_24h",
+      "category": "Velocity (Sender)",
+      "description": "Engineered feature sender_amount_sum_prev_24h capturing velocity (sender) patterns.",
+      "temporal_window": "24h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_unique_receivers_prev_1h",
+      "category": "Velocity (Sender)",
+      "description": "Engineered feature sender_unique_receivers_prev_1h capturing velocity (sender) patterns.",
+      "temporal_window": "1h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_unique_receivers_prev_24h",
+      "category": "Velocity (Sender)",
+      "description": "Engineered feature sender_unique_receivers_prev_24h capturing velocity (sender) patterns.",
+      "temporal_window": "24h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_txn_count_prev_1h",
+      "category": "Velocity (Receiver)",
+      "description": "Engineered feature receiver_txn_count_prev_1h capturing velocity (receiver) patterns.",
+      "temporal_window": "1h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_amount_sum_prev_1h",
+      "category": "Velocity (Receiver)",
+      "description": "Engineered feature receiver_amount_sum_prev_1h capturing velocity (receiver) patterns.",
+      "temporal_window": "1h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "receiver_txn_count_prev_24h",
+      "category": "Velocity (Receiver)",
+      "description": "Engineered feature receiver_txn_count_prev_24h capturing velocity (receiver) patterns.",
+      "temporal_window": "24h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_amount_sum_prev_24h",
+      "category": "Velocity (Receiver)",
+      "description": "Engineered feature receiver_amount_sum_prev_24h capturing velocity (receiver) patterns.",
+      "temporal_window": "24h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "receiver_unique_senders_prev_1h",
+      "category": "Velocity (Receiver)",
+      "description": "Engineered feature receiver_unique_senders_prev_1h capturing velocity (receiver) patterns.",
+      "temporal_window": "1h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_unique_senders_prev_24h",
+      "category": "Velocity (Receiver)",
+      "description": "Engineered feature receiver_unique_senders_prev_24h capturing velocity (receiver) patterns.",
+      "temporal_window": "24h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_txn_count_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_txn_count_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_amount_sum_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_amount_sum_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_amount_avg_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_amount_avg_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_amount_std_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_amount_std_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_unique_receivers_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_unique_receivers_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_unique_channels_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_unique_channels_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_crypto_txn_count_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_crypto_txn_count_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "amount_to_sender_avg_ratio",
+      "category": "Transaction Core",
+      "description": "Engineered feature amount_to_sender_avg_ratio capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_amount_zscore_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_amount_zscore_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "receiver_txn_count_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_txn_count_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_amount_sum_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_amount_sum_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "receiver_amount_avg_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_amount_avg_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "receiver_amount_std_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_amount_std_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "receiver_unique_senders_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_unique_senders_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_unique_channels_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_unique_channels_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_crypto_txn_count_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_crypto_txn_count_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "amount_to_receiver_avg_ratio",
+      "category": "Transaction Core",
+      "description": "Engineered feature amount_to_receiver_avg_ratio capturing transaction core patterns.",
+      "temporal_window": "Instantaneous",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "receiver_amount_zscore_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_amount_zscore_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "float64"
+    },
+    {
+      "feature_name": "sender_near_regulatory_threshold_txns_prev_24h",
+      "category": "Behavioral Historical Aggregations",
+      "description": "Count of sender transactions in the previous 24 hours within the near-regulatory-threshold bracket (0.90 * 1,000,000 <= amount < 1,000,000 INR). Configured via REGULATORY_CTR_THRESHOLD_INR=1,000,000 and NEAR_THRESHOLD_LOWER_RATIO=0.90 to capture structuring (smurfing) behavior attempting to evade the statutory \u20b910 Lakh CTR reporting threshold under PMLA / FIU-IND context. Excludes current transaction. Domain Disclaimer: Represents an objective behavioral indicator for downstream ML scoring, not a legal determination or fraud label.",
+      "temporal_window": "24h",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "device_txn_count_historical",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature device_txn_count_historical capturing infrastructure reuse patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "device_unique_accounts_historical",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature device_unique_accounts_historical capturing infrastructure reuse patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "device_unique_customers_historical",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature device_unique_customers_historical capturing infrastructure reuse patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "device_txn_count_prev_1h",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature device_txn_count_prev_1h capturing infrastructure reuse patterns.",
+      "temporal_window": "1h / 24h / Prior",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "device_txn_count_prev_24h",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature device_txn_count_prev_24h capturing infrastructure reuse patterns.",
+      "temporal_window": "1h / 24h / Prior",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "ip_txn_count_historical",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature ip_txn_count_historical capturing infrastructure reuse patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "ip_unique_accounts_historical",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature ip_unique_accounts_historical capturing infrastructure reuse patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "ip_unique_customers_historical",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature ip_unique_customers_historical capturing infrastructure reuse patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "ip_txn_count_prev_1h",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature ip_txn_count_prev_1h capturing infrastructure reuse patterns.",
+      "temporal_window": "1h / 24h / Prior",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "ip_txn_count_prev_24h",
+      "category": "Infrastructure Reuse",
+      "description": "Engineered feature ip_txn_count_prev_24h capturing infrastructure reuse patterns.",
+      "temporal_window": "1h / 24h / Prior",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_customers_count_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_customers_count_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "receiver_customers_count_historical",
+      "category": "Receiver Historical Behavior",
+      "description": "Engineered feature receiver_customers_count_historical capturing receiver historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    },
+    {
+      "feature_name": "sender_customer_accounts_count_historical",
+      "category": "Sender Historical Behavior",
+      "description": "Engineered feature sender_customer_accounts_count_historical capturing sender historical behavior patterns.",
+      "temporal_window": "All Prior History",
+      "is_strictly_past_looking": true,
+      "leakage_safe": true,
+      "data_type": "int64"
+    }
+  ]
+}

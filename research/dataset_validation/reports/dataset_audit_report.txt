@@ -1,0 +1,197 @@
+================================================================================
+        PROJECT VIGILANCE - PHASE 0: INDEPENDENT DATASET AUDIT REPORT        
+================================================================================
+Audit Timestamp : 2026-10-06T00:24:49.247799
+Transaction File: D:\Projects\AI Powered AML detection system\Project codebase\data\training\aml_150k_v2.csv
+Ground Truth File: D:\Projects\AI Powered AML detection system\Project codebase\data\training\aml_150k_v2_ground_truth.csv
+Audit Verdict   : [WARNING]
+--------------------------------------------------------------------------------
+
+1. EXECUTIVE SUMMARY & VERDICT
+   ----------------------------------------------------------------------
+   Final Status: WARNING
+   Passed Checks: 27
+   Warnings:      3
+   Failures:      0
+
+   WARNINGS:
+     [WARN] 1457 sender accounts map to multiple sender customer IDs.
+     [WARN] 1451 receiver accounts map to multiple receiver customer IDs.
+     [WARN] 2292 shared accounts map to conflicting customer IDs across sender/receiver roles.
+
+   PASSES:
+     [OK] Transaction file exists.
+     [OK] Ground truth file exists.
+     [OK] Loaded datasets: 150,000 tx rows, 150,000 gt rows.
+     [OK] Exact 17 transaction columns match specification.
+     [OK] Ground-truth columns match specification.
+     [OK] Zero duplicate transaction IDs in transaction dataset.
+     [OK] Zero duplicate transaction IDs in ground truth dataset.
+     [OK] Zero duplicate rows in transaction dataset.
+     [OK] 100% ID alignment between tx and gt (150,000 matching IDs).
+     [OK] Ground truth values are strictly binary (0 or 1).
+     [OK] Class distribution aligns with expected AML ratio (~12.00% suspicious).
+     [OK] Amount column is numeric.
+     [OK] All mandatory columns contain 0 null values.
+     [OK] Ground truth file has 0 null values.
+     [OK] All amounts are strictly positive (> 0).
+     [OK] Timestamps successfully parsed as ISO-8601 UTC. Span: 2026-10-01 00:00:17.491000+00:00 to 2026-10-31 23:59:59.569000+00:00 (31.0 days).
+     [OK] Realistic crypto/fiat overlap: legitimate crypto exists and suspicious non-crypto exists.
+     [OK] Zero non-crypto transactions have an unexpected crypto_wallet.
+     [OK] 100% of crypto transactions have an associated crypto_wallet.
+     [OK] Amounts show realistic overlap between normal and suspicious classes (1,484,839.82 span overlap). No trivial cutoff separation.
+     [OK] Temporal distribution overlaps normally across entire timeframe (2026-10-01 to 2026-10-31).
+     [OK] Infrastructure sharing verified: 7,000 shared devices, 9,734 shared IPs.
+     [OK] Realistic device/IP overlap: 5594 devices and 5257 IPs host both legitimate and suspicious transactions.
+     [OK] Financial network interconnectedness confirmed: 29,571 accounts act as flow conduits (both send & receive).
+     [OK] Zero synthetic scenario marker keywords found (no SMURF, STR-FWD, SHELL, CRIME, MULE tags in names or IDs).
+     [OK] No single categorical feature acts as a deterministic 100% label proxy.
+     [OK] Shortcut Probe Passed: Simple features cannot classify AML transactions (Max ROC-AUC: 0.7787, Max F1: 0.2588). Complex AML features required.
+
+2. FILE METRICS & RECORD ALIGNMENT
+   ----------------------------------------------------------------------
+   Transaction Records:   150,000
+   Ground Truth Records:  150,000
+   Matching Common IDs:   150,000
+   Transaction Coverage:  100.0%
+   Ground Truth Coverage: 100.0%
+   Missing in GT:         0
+   Missing in TX:         0
+
+3. SCHEMA & DUPLICATE AUDIT
+   ----------------------------------------------------------------------
+   Column Count:          17 (Expected: 17)
+   Exact Schema Match:    True
+   Target in TX File:     False (Must be False)
+   Duplicate TX IDs:      0
+   Duplicate GT IDs:      0
+   Duplicate TX Rows:     0
+
+4. GROUND TRUTH CLASS DISTRIBUTION
+   ----------------------------------------------------------------------
+   Normal (0):            132,000 (88.0%)
+   Suspicious (1):        18,000 (12.0%)
+   Imbalance Ratio (N:S): 7.33:1
+   Invalid Classes:       0
+
+5. NULL VALUE BREAKDOWN
+   ----------------------------------------------------------------------
+   Column Name               Null Count   Null %     Status         
+   ------------------------- ------------ ---------- ---------------
+   transaction_id            0            0.00      % CLEAN (0)      
+   timestamp                 0            0.00      % CLEAN (0)      
+   sender_account            0            0.00      % CLEAN (0)      
+   sender_name               0            0.00      % CLEAN (0)      
+   sender_customer_id        0            0.00      % CLEAN (0)      
+   receiver_account          0            0.00      % CLEAN (0)      
+   receiver_name             0            0.00      % CLEAN (0)      
+   receiver_customer_id      0            0.00      % CLEAN (0)      
+   amount                    0            0.00      % CLEAN (0)      
+   currency                  0            0.00      % CLEAN (0)      
+   channel                   0            0.00      % CLEAN (0)      
+   ip_address                0            0.00      % CLEAN (0)      
+   device_id                 10589        7.06      % EXPECTED NULL  
+   location_country          0            0.00      % CLEAN (0)      
+   location_city             0            0.00      % CLEAN (0)      
+   is_crypto                 0            0.00      % CLEAN (0)      
+   crypto_wallet             128689       85.79     % EXPECTED NULL  
+
+6. CRYPTO CONSISTENCY AUDIT
+   ----------------------------------------------------------------------
+   Total Crypto Transactions:     21,311
+   Total Non-Crypto Transactions: 128,689
+   Crypto Missing Wallet:         0
+   Crypto Wallet Present Rate:    100.0%
+   Non-Crypto With Wallet:        0
+
+7. AMOUNT DISTRIBUTION STATS BY CLASS
+   ----------------------------------------------------------------------
+   Metric       Normal (Class 0)     Suspicious (Class 1)
+   ------------ -------------------- --------------------
+   min          100.22               98.70               
+   p25          15,667.32            33,554.00           
+   median       60,070.53            96,668.88           
+   mean         187,797.84           346,115.68          
+   p75          149,310.34           605,749.84          
+   p95          954,464.75           1,292,298.02        
+   p99          1,383,316.47         1,442,293.80        
+   max          1,484,993.73         1,484,940.04        
+   std          305,822.05           439,004.44          
+   Realistic Overlap: True (Range: [100.22, 1484940.04])
+
+8. CATEGORICAL DISTRIBUTIONS & LEAKAGE PROXY AUDIT
+   ----------------------------------------------------------------------
+   Channels:
+     - UPI             : Total=44,829  Normal=42,459  Suspicious=2,370  (Susp Rate: 5.29%)
+     - IMPS            : Total=37,221  Normal=30,334  Suspicious=6,887  (Susp Rate: 18.50%)
+     - NEFT            : Total=22,045  Normal=18,097  Suspicious=3,948  (Susp Rate: 17.91%)
+     - Crypto Gateway  : Total=21,311  Normal=19,811  Suspicious=1,500  (Susp Rate: 7.04%)
+     - RTGS            : Total=18,134  Normal=15,752  Suspicious=2,382  (Susp Rate: 13.14%)
+     - Card            : Total=6,460   Normal=5,547   Suspicious=913    (Susp Rate: 14.13%)
+
+   Currencies:
+     - INR             : Total=128,689 Normal=112,189 Suspicious=16,500 (Susp Rate: 12.82%)
+     - USDT            : Total=21,311  Normal=19,811  Suspicious=1,500  (Susp Rate: 7.04%)
+
+   Deterministic Proxies Found: 0
+
+9. INFRASTRUCTURE & NETWORK SHARING
+   ----------------------------------------------------------------------
+   Total Unique Devices:          7,000
+   Shared Devices (>1 Account):   7,000
+   Max Accounts per Device:       39
+   Total Unique IPs:              9,734
+   Shared IPs (>1 Account):       9,734
+   Max Accounts per IP:           51
+   Conduit Accounts (Send & Rec): 29,571
+
+10. SYNTHETIC SCENARIO MARKER SCAN
+   ----------------------------------------------------------------------
+   Total Marker Occurrences:      0
+   Zero synthetic markers found across all text attributes.
+
+11. SIMPLE FEATURE SHORTCUT & BASELINE PROBE BENCHMARK (TESTS 1 - 8)
+   ----------------------------------------------------------------------
+   Feature Test / Probe Set                     | Model                  | ROC-AUC  | PR-AUC   | F1    
+   -----------------------------------------------------------------------------------------------
+   Test 1: Amount only                          | Logistic Regression    | 0.6162   | 0.1885   | 0.0000
+   Test 1: Amount only                          | Decision Tree (depth=3) | 0.6862   | 0.2864   | 0.0001
+   Test 1: Amount only                          | Decision Tree (depth=5) | 0.6908   | 0.2951   | 0.0046
+   Test 2: Geography only                       | Logistic Regression    | 0.5110   | 0.1237   | 0.0000
+   Test 2: Geography only                       | Decision Tree (depth=3) | 0.5058   | 0.1216   | 0.0000
+   Test 2: Geography only                       | Decision Tree (depth=5) | 0.5083   | 0.1224   | 0.0000
+   Test 3: Crypto only                          | Logistic Regression    | 0.5322   | 0.1274   | 0.0000
+   Test 3: Crypto only                          | Decision Tree (depth=3) | 0.5322   | 0.1274   | 0.0000
+   Test 3: Crypto only                          | Decision Tree (depth=5) | 0.5322   | 0.1274   | 0.0000
+   Test 4: Channel only                         | Logistic Regression    | 0.6467   | 0.1716   | 0.0000
+   Test 4: Channel only                         | Decision Tree (depth=3) | 0.6424   | 0.1684   | 0.0000
+   Test 4: Channel only                         | Decision Tree (depth=5) | 0.6467   | 0.1716   | 0.0000
+   Test 5: Basic Transaction (Amt+Curr+Chan+Crypto+Geo) | Logistic Regression    | 0.6921   | 0.2398   | 0.0008
+   Test 5: Basic Transaction (Amt+Curr+Chan+Crypto+Geo) | Decision Tree (depth=3) | 0.7026   | 0.2588   | 0.0000
+   Test 5: Basic Transaction (Amt+Curr+Chan+Crypto+Geo) | Decision Tree (depth=5) | 0.7646   | 0.3439   | 0.2588
+   Test 6: Temporal only (Hour+Day+Weekday)     | Logistic Regression    | 0.5215   | 0.1244   | 0.0000
+   Test 6: Temporal only (Hour+Day+Weekday)     | Decision Tree (depth=3) | 0.5308   | 0.1273   | 0.0000
+   Test 6: Temporal only (Hour+Day+Weekday)     | Decision Tree (depth=5) | 0.5366   | 0.1307   | 0.0000
+   Test 7: Infrastructure only (Device/IP reuse) | Logistic Regression    | 0.7299   | 0.2568   | 0.0544
+   Test 7: Infrastructure only (Device/IP reuse) | Decision Tree (depth=3) | 0.6771   | 0.2115   | 0.0000
+   Test 7: Infrastructure only (Device/IP reuse) | Decision Tree (depth=5) | 0.7089   | 0.2436   | 0.0079
+   Test 8a: XGBoost on Amount only              | XGBoost (100 trees)    | 0.7003   | 0.3045   | 0.0786
+   Test 8b: XGBoost on Basic Raw Features       | XGBoost (100 trees)    | 0.7787   | 0.3811   | 0.2525
+   -----------------------------------------------------------------------------------------------
+   Max ROC-AUC by Simple Features: 0.7787
+   Max F1-Score by Simple Features: 0.2588
+   Trivial 99% Shortcut Present:   False
+
+12. MULTI-CUSTOMER ACCOUNT PATTERN ANALYSIS
+   ----------------------------------------------------------------------
+   Sender Accounts Mapping to >1 Customer:   1,457
+   Receiver Accounts Mapping to >1 Customer: 1,451
+   Cross-Role Mismatch Accounts:             2,292
+   Behavioral Inspection:
+     • In multi-customer accounts, 73.8% of transactions are NORMAL, 26.2% are SUSPICIOUS.
+     • Multi-customer status does NOT act as a deterministic label shortcut.
+     • It represents an AML syndication / money-mule pattern, naturally modeled in Neo4j.
+
+================================================================================
+                          END OF AUDIT REPORT                        
+================================================================================

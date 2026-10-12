@@ -1,0 +1,121 @@
+================================================================================
+        PROJECT VIGILANCE - PHASE 1: PREPROCESSING & VALIDATION REPORT       
+================================================================================
+Execution Timestamp : 2026-10-06T00:39:15.230317
+Input Transaction   : D:\Projects\AI Powered AML detection system\Project codebase\data\training\aml_150k_v2.csv
+Input Ground Truth  : D:\Projects\AI Powered AML detection system\Project codebase\data\training\aml_150k_v2_ground_truth.csv
+Processed Output    : D:\Projects\AI Powered AML detection system\Project codebase\data\processed\aml_150k_clean.csv
+Overall Status      : [PASS WITH WARNINGS]
+--------------------------------------------------------------------------------
+
+1. PHASE 1 — WHAT WAS DONE
+   Implemented production-grade reusable preprocessing & validation package (ml-service/app/preprocessing), archived Phase 0 research artifacts into research/, executed strict 17-column schema verification, domain constraints, UTC timestamp standardization, basic temporal feature derivation, and generated data/processed/aml_150k_clean.csv.
+
+2. INPUT FILES & SOURCE IMMUTABILITY
+   • Transaction File : D:\Projects\AI Powered AML detection system\Project codebase\data\training\aml_150k_v2.csv (SHA256: 17467e4980bf29c6...)
+   • Ground Truth File: D:\Projects\AI Powered AML detection system\Project codebase\data\training\aml_150k_v2_ground_truth.csv
+   • Source Immutability Check: PASSED (bit-for-bit unchanged after pipeline execution)
+
+3. INPUT & OUTPUT ROW COUNTS
+   • Input Transactions:  150,000
+   • Output Clean Rows:   150,000
+   • Rows Dropped:        0 (0 dropped)
+   • Input Columns:       17 (Canonical 17)
+   • Output Columns:      20 (17 canonical + 3 basic temporal)
+
+4. SCHEMA VALIDATION
+   • Status: PASS (Exact 17 canonical columns matched in required sequence)
+   • Zero missing columns, zero unexpected columns, zero target leakage in transaction file.
+
+5. TRANSACTION ID VALIDATION
+   • Total IDs: 150,000 | Unique IDs: 150,000
+   • Null IDs: 0 | Duplicate IDs: 0
+
+6. GROUND-TRUTH ALIGNMENT
+   • Alignment Coverage: 100.0% (Exact 150,000 to 150,000 1-to-1 matching)
+   • Missing in GT: 0 | Extra in GT: 0
+   • Target Separation: Enforced (ground_truth NOT merged into model feature columns)
+
+7. NULL ANALYSIS & POLICY
+   Column Name               Null Count   Null %     Policy Enforcement  
+   ----------------------------------------------------------------------
+   transaction_id            0            0.00      % CLEAN (0 NULLS)     
+   timestamp                 0            0.00      % CLEAN (0 NULLS)     
+   sender_account            0            0.00      % CLEAN (0 NULLS)     
+   sender_name               0            0.00      % CLEAN (0 NULLS)     
+   sender_customer_id        0            0.00      % CLEAN (0 NULLS)     
+   receiver_account          0            0.00      % CLEAN (0 NULLS)     
+   receiver_name             0            0.00      % CLEAN (0 NULLS)     
+   receiver_customer_id      0            0.00      % CLEAN (0 NULLS)     
+   amount                    0            0.00      % CLEAN (0 NULLS)     
+   currency                  0            0.00      % CLEAN (0 NULLS)     
+   channel                   0            0.00      % CLEAN (0 NULLS)     
+   ip_address                0            0.00      % CLEAN (0 NULLS)     
+   device_id                 10589        7.06      % PRESERVED LEGITIMATE NULL
+   location_country          0            0.00      % CLEAN (0 NULLS)     
+   location_city             0            0.00      % CLEAN (0 NULLS)     
+   is_crypto                 0            0.00      % CLEAN (0 NULLS)     
+   crypto_wallet             128689       85.79     % PRESERVED LEGITIMATE NULL
+   transaction_date          0            0.00      % CLEAN (0 NULLS)     
+   transaction_hour          0            0.00      % CLEAN (0 NULLS)     
+   transaction_weekday       0            0.00      % CLEAN (0 NULLS)     
+
+8. TIMESTAMP VALIDATION & BASIC TEMPORAL DERIVATION
+   • ISO-8601 UTC Standardization: PASSED (0 parsing errors)
+   • Derived Basic Features: transaction_date, transaction_hour, transaction_weekday
+   • Boundary Enforcement: NO rolling velocity or 24h counters (deferred to Phase 2)
+
+9. AMOUNT VALIDATION
+   • Numeric & Finite: PASSED | Strictly Positive (> 0): PASSED
+   • Zero NaN, Zero Infinity, Zero Negative Values
+   • Monetary Preservation: Exact precision preserved (no clipping, capping, or scaling)
+
+10. CURRENCY & CHANNEL VALIDATION
+   • Currencies Verified: ['INR', 'USDT'] (0 unsupported, no assumed forex)
+   • Channels Verified  : ['Card', 'Crypto Gateway', 'IMPS', 'NEFT', 'RTGS', 'UPI'] (0 unsupported)
+
+11. IP & DEVICE VALIDATION
+   • IP Syntactic Validation: PASSED (9,734 unique IPv4/IPv6)
+   • Device Missingness: Preserved as NaN (NOT replaced with 'UNKNOWN' or 0)
+
+12. CRYPTO / WALLET CONSISTENCY
+   • is_crypto=True -> 100% wallet presence (21,311 / 21,311)
+   • is_crypto=False -> 100% wallet absence (128,689 / 128,689)
+
+13. ENTITY RELATIONSHIP POLICY
+   • Multi-customer accounts (1,457 accounts) PRESERVED untouched.
+   • No dictionary flattening or overwriting of account-customer bridges.
+
+14. IDENTIFIER POLICY & LEAKAGE PROTECTION
+   • Tracked Identifiers: 10 columns preserved for graph & joins.
+   • Target Leakage: Strictly excluded from output feature dataset.
+
+15. PROCESSED DATASET DETAILS
+   • Destination: D:\Projects\AI Powered AML detection system\Project codebase\data\processed\aml_150k_clean.csv
+   • Rows: 150,000 | Columns: 20
+   • SHA256: 7cd91deca5c53a2dd4dcb36bc1ece2891e09e0b3c54c4f5f1c81aa9a9e1dd901
+
+16. AUTOMATED TEST SUITE EXECUTION
+   • Test Suite: tests/test_preprocessing.py
+   • Results: 23 passed, 0 failed (100.0% pass rate in 1.27s)
+
+17. PHASE 0 RESEARCH SEPARATION
+   • Status: ARCHIVED in research/dataset_validation/
+   • Production Code Imports: 0 imports from research (strict separation verified)
+
+18. WARNINGS DOCUMENTED
+   [!] 1,457 sender accounts and 1,451 receiver accounts map to multiple customer IDs (mule/syndicate pattern preserved for Neo4j).
+   [!] device_id contains 10,589 legitimate nulls (7.06%) preserved without synthetic replacement.
+   [!] crypto_wallet contains 128,689 legitimate nulls (85.79%) corresponding strictly to non-crypto transactions.
+
+19. PHASE 1 VERDICT
+   ===> PASS WITH WARNINGS <===
+   The preprocessing & validation pipeline is fully functional, deterministic,
+   leakage-safe, tested, and ready for human review.
+
+20. PHASE 2 HIGH-LEVEL PLAN
+   Design and implement leakage-safe feature engineering in ml-service/app/features/: temporal rolling counters (1h/24h), velocity ratios, counterparty diversities, device/IP sharing degree metrics, structuring indicators, and graph features, using strictly past-looking rolling calculations to prevent temporal data leakage.
+
+================================================================================
+                      END OF PHASE 1 PREPROCESSING REPORT                     
+================================================================================

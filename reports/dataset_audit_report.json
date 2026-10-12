@@ -1,0 +1,850 @@
+{
+  "audit_meta": {
+    "timestamp": "2026-10-06T00:24:49.247799",
+    "tx_file": "D:\\Projects\\AI Powered AML detection system\\Project codebase\\data\\training\\aml_150k_v2.csv",
+    "gt_file": "D:\\Projects\\AI Powered AML detection system\\Project codebase\\data\\training\\aml_150k_v2_ground_truth.csv"
+  },
+  "findings": {
+    "file_existence": {
+      "tx_file_exists": true,
+      "tx_file_size_bytes": 28615778,
+      "tx_file_size_mb": 27.29,
+      "gt_file_exists": true,
+      "gt_file_size_bytes": 2250028,
+      "gt_file_size_mb": 2.15
+    },
+    "row_counts": {
+      "tx_rows": 150000,
+      "gt_rows": 150000
+    },
+    "schema": {
+      "tx_columns": [
+        "transaction_id",
+        "timestamp",
+        "sender_account",
+        "sender_name",
+        "sender_customer_id",
+        "receiver_account",
+        "receiver_name",
+        "receiver_customer_id",
+        "amount",
+        "currency",
+        "channel",
+        "ip_address",
+        "device_id",
+        "location_country",
+        "location_city",
+        "is_crypto",
+        "crypto_wallet"
+      ],
+      "tx_column_count": 17,
+      "missing_tx_columns": [],
+      "extra_tx_columns": [],
+      "tx_columns_match_expected": true,
+      "gt_columns": [
+        "transaction_id",
+        "ground_truth"
+      ],
+      "gt_column_count": 2,
+      "missing_gt_columns": [],
+      "extra_gt_cols": [],
+      "gt_columns_match_expected": true,
+      "target_leak_in_tx": false
+    },
+    "duplicates": {
+      "tx_duplicate_ids": 0,
+      "gt_duplicate_ids": 0,
+      "tx_duplicate_rows": 0,
+      "gt_duplicate_rows": 0
+    },
+    "id_alignment": {
+      "total_unique_tx_ids": 150000,
+      "total_unique_gt_ids": 150000,
+      "common_ids": 150000,
+      "ids_in_tx_missing_in_gt": 0,
+      "ids_in_gt_missing_in_tx": 0,
+      "tx_coverage_pct": 100.0,
+      "gt_coverage_pct": 100.0,
+      "sample_missing_in_gt": [],
+      "sample_missing_in_tx": []
+    },
+    "class_distribution": {
+      "normal_count (0)": 132000,
+      "normal_pct (0)": 88.0,
+      "suspicious_count (1)": 18000,
+      "suspicious_pct (1)": 12.0,
+      "invalid_classes_count": 0,
+      "imbalance_ratio (Normal:Suspicious)": 7.33
+    },
+    "data_types": {
+      "tx_dtypes": {
+        "transaction_id": "str",
+        "timestamp": "str",
+        "sender_account": "str",
+        "sender_name": "str",
+        "sender_customer_id": "str",
+        "receiver_account": "str",
+        "receiver_name": "str",
+        "receiver_customer_id": "str",
+        "amount": "float64",
+        "currency": "str",
+        "channel": "str",
+        "ip_address": "str",
+        "device_id": "str",
+        "location_country": "str",
+        "location_city": "str",
+        "is_crypto": "bool",
+        "crypto_wallet": "str"
+      },
+      "gt_dtypes": {
+        "transaction_id": "str",
+        "ground_truth": "int64"
+      }
+    },
+    "null_values": {
+      "tx_nulls": {
+        "transaction_id": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "timestamp": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "sender_account": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "sender_name": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "sender_customer_id": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "receiver_account": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "receiver_name": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "receiver_customer_id": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "amount": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "currency": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "channel": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "ip_address": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "device_id": {
+          "null_count": 10589,
+          "null_pct": 7.0593
+        },
+        "location_country": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "location_city": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "is_crypto": {
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        "crypto_wallet": {
+          "null_count": 128689,
+          "null_pct": 85.7927
+        }
+      },
+      "gt_nulls": {
+        "transaction_id": 0,
+        "ground_truth": 0
+      },
+      "mandatory_column_violations": []
+    },
+    "domain_validity": {
+      "non_positive_amounts": 0,
+      "nan_amounts": 0,
+      "inf_amounts": 0,
+      "invalid_timestamp_count": 0,
+      "min_timestamp": "2026-10-01 00:00:17.491000+00:00",
+      "max_timestamp": "2026-10-31 23:59:59.569000+00:00",
+      "date_span_days": 31.0,
+      "is_crypto_unique_values": [
+        "False",
+        "True"
+      ],
+      "is_crypto_valid": true
+    },
+    "categorical_distributions": {
+      "currency_distribution": {
+        "INR": 128689,
+        "USDT": 21311
+      },
+      "channel_distribution": {
+        "UPI": 44829,
+        "IMPS": 37221,
+        "NEFT": 22045,
+        "Crypto Gateway": 21311,
+        "RTGS": 18134,
+        "Card": 6460
+      },
+      "is_crypto_distribution": {
+        "False": 128689,
+        "True": 21311
+      },
+      "currency_by_class": {
+        "normal": {
+          "INR": 112189,
+          "USDT": 19811
+        },
+        "suspicious": {
+          "INR": 16500,
+          "USDT": 1500
+        }
+      },
+      "channel_by_class": {
+        "normal": {
+          "UPI": 42459,
+          "IMPS": 30334,
+          "NEFT": 18097,
+          "Crypto Gateway": 19811,
+          "RTGS": 15752,
+          "Card": 5547
+        },
+        "suspicious": {
+          "UPI": 2370,
+          "IMPS": 6887,
+          "NEFT": 3948,
+          "Crypto Gateway": 1500,
+          "RTGS": 2382,
+          "Card": 913
+        }
+      },
+      "is_crypto_by_class": {
+        "normal": {
+          "False": 112189,
+          "True": 19811
+        },
+        "suspicious": {
+          "False": 16500,
+          "True": 1500
+        }
+      },
+      "country_distribution": {
+        "India": 92306,
+        "Singapore": 11651,
+        "United Kingdom": 11601,
+        "Offshore": 11522,
+        "United Arab Emirates": 11496,
+        "United States": 11424
+      },
+      "top_10_cities": {
+        "Kolkata": 11703,
+        "Ahmedabad": 11686,
+        "Singapore": 11651,
+        "London": 11601,
+        "Mumbai": 11549,
+        "Chennai": 11546,
+        "Zurich": 11522,
+        "Dubai": 11496,
+        "Bengaluru": 11490,
+        "Delhi": 11460
+      }
+    },
+    "crypto_consistency": {
+      "total_crypto_transactions": 21311,
+      "total_non_crypto_transactions": 128689,
+      "crypto_tx_missing_wallet": 0,
+      "crypto_wallet_present_pct": 100.0,
+      "non_crypto_tx_with_wallet": 0
+    },
+    "entity_consistency": {
+      "unique_sender_accounts": 29806,
+      "unique_sender_customers": 19927,
+      "sender_accounts_with_multiple_customers": 1457,
+      "unique_receiver_accounts": 29763,
+      "unique_receiver_customers": 19925,
+      "receiver_accounts_with_multiple_customers": 1451,
+      "accounts_present_as_both_sender_and_receiver": 29571,
+      "cross_role_account_customer_mismatches": 2292
+    },
+    "amount_distributions": {
+      "normal_amount_stats": {
+        "count": 132000,
+        "min": 100.22,
+        "p25": 15667.32,
+        "median": 60070.53,
+        "mean": 187797.84,
+        "p75": 149310.34,
+        "p95": 954464.75,
+        "p99": 1383316.47,
+        "max": 1484993.73,
+        "std": 305822.05
+      },
+      "suspicious_amount_stats": {
+        "count": 18000,
+        "min": 98.7,
+        "p25": 33554.0,
+        "median": 96668.88,
+        "mean": 346115.68,
+        "p75": 605749.84,
+        "p95": 1292298.02,
+        "p99": 1442293.8,
+        "max": 1484940.04,
+        "std": 439004.44
+      },
+      "by_currency_stats": {
+        "INR": {
+          "0": {
+            "count": 112189,
+            "min": 100.22,
+            "median": 60190.16,
+            "mean": 187848.03,
+            "max": 1484993.73
+          },
+          "1": {
+            "count": 16500,
+            "min": 98.7,
+            "median": 96472.74,
+            "mean": 342160.18,
+            "max": 1484940.04
+          }
+        },
+        "USDT": {
+          "0": {
+            "count": 19811,
+            "min": 100.64,
+            "median": 59352.25,
+            "mean": 187513.64,
+            "max": 1484310.47
+          },
+          "1": {
+            "count": 1500,
+            "min": 100.71,
+            "median": 120663.32,
+            "mean": 389626.1,
+            "max": 1482890.36
+          }
+        }
+      },
+      "has_amount_overlap": true,
+      "overlap_range": [
+        100.22,
+        1484940.04
+      ]
+    },
+    "timestamp_distributions": {
+      "normal_range": {
+        "start": "2026-10-01 00:00:17.491000+00:00",
+        "end": "2026-10-31 23:59:59.569000+00:00",
+        "days": 31.0
+      },
+      "suspicious_range": {
+        "start": "2026-10-01 00:05:50+00:00",
+        "end": "2026-10-31 01:30:31+00:00",
+        "days": 30.06
+      },
+      "daily_tx_stats": {
+        "mean_tx_per_day": 4838.71,
+        "min_tx_per_day": 4328,
+        "max_tx_per_day": 5023
+      },
+      "suspicious_active_days": 31,
+      "total_days": 31
+    },
+    "infrastructure_sharing": {
+      "total_unique_devices": 7000,
+      "devices_with_multiple_accounts": 7000,
+      "max_accounts_per_device": 39,
+      "mean_accounts_per_device": 19.91,
+      "devices_only_in_suspicious": 0,
+      "devices_only_in_normal": 1406,
+      "devices_mixed_classes": 5594,
+      "total_unique_ips": 9734,
+      "ips_with_multiple_accounts": 9734,
+      "max_accounts_per_ip": 51,
+      "mean_accounts_per_ip": 15.18,
+      "ips_only_in_suspicious": 0,
+      "ips_only_in_normal": 4477,
+      "ips_mixed_classes": 5257
+    },
+    "entity_overlap": {
+      "total_senders": 29806,
+      "total_receivers": 29763,
+      "conduit_accounts (both send & receive)": 29571,
+      "conduit_account_pct": 98.58,
+      "senders_in_both_normal_and_suspicious": 12162,
+      "receivers_in_both_normal_and_suspicious": 8160
+    },
+    "suspicious_markers": {
+      "total_marker_occurrences": 0,
+      "columns_with_markers": {}
+    },
+    "label_leakage": {
+      "base_suspicious_rate": 0.12,
+      "categorical_conditional_probabilities": {
+        "currency": {
+          "INR": {
+            "support": 128689,
+            "pct_of_dataset": 85.79,
+            "suspicious_rate": 0.1282
+          },
+          "USDT": {
+            "support": 21311,
+            "pct_of_dataset": 14.21,
+            "suspicious_rate": 0.0704
+          }
+        },
+        "channel": {
+          "Card": {
+            "support": 6460,
+            "pct_of_dataset": 4.31,
+            "suspicious_rate": 0.1413
+          },
+          "Crypto Gateway": {
+            "support": 21311,
+            "pct_of_dataset": 14.21,
+            "suspicious_rate": 0.0704
+          },
+          "IMPS": {
+            "support": 37221,
+            "pct_of_dataset": 24.81,
+            "suspicious_rate": 0.185
+          },
+          "NEFT": {
+            "support": 22045,
+            "pct_of_dataset": 14.7,
+            "suspicious_rate": 0.1791
+          },
+          "RTGS": {
+            "support": 18134,
+            "pct_of_dataset": 12.09,
+            "suspicious_rate": 0.1314
+          },
+          "UPI": {
+            "support": 44829,
+            "pct_of_dataset": 29.89,
+            "suspicious_rate": 0.0529
+          }
+        },
+        "is_crypto": {
+          "False": {
+            "support": 128689,
+            "pct_of_dataset": 85.79,
+            "suspicious_rate": 0.1282
+          },
+          "True": {
+            "support": 21311,
+            "pct_of_dataset": 14.21,
+            "suspicious_rate": 0.0704
+          }
+        },
+        "location_country": {
+          "India": {
+            "support": 92306,
+            "pct_of_dataset": 61.54,
+            "suspicious_rate": 0.1193
+          },
+          "Offshore": {
+            "support": 11522,
+            "pct_of_dataset": 7.68,
+            "suspicious_rate": 0.1207
+          },
+          "Singapore": {
+            "support": 11651,
+            "pct_of_dataset": 7.77,
+            "suspicious_rate": 0.1227
+          },
+          "United Arab Emirates": {
+            "support": 11496,
+            "pct_of_dataset": 7.66,
+            "suspicious_rate": 0.1259
+          },
+          "United Kingdom": {
+            "support": 11601,
+            "pct_of_dataset": 7.73,
+            "suspicious_rate": 0.1234
+          },
+          "United States": {
+            "support": 11424,
+            "pct_of_dataset": 7.62,
+            "suspicious_rate": 0.1129
+          }
+        },
+        "location_city": {
+          "Ahmedabad": {
+            "support": 11686,
+            "pct_of_dataset": 7.79,
+            "suspicious_rate": 0.1294
+          },
+          "Bengaluru": {
+            "support": 11490,
+            "pct_of_dataset": 7.66,
+            "suspicious_rate": 0.1135
+          },
+          "Chennai": {
+            "support": 11546,
+            "pct_of_dataset": 7.7,
+            "suspicious_rate": 0.1161
+          },
+          "Delhi": {
+            "support": 11460,
+            "pct_of_dataset": 7.64,
+            "suspicious_rate": 0.1195
+          },
+          "Dubai": {
+            "support": 11496,
+            "pct_of_dataset": 7.66,
+            "suspicious_rate": 0.1259
+          },
+          "Hyderabad": {
+            "support": 11430,
+            "pct_of_dataset": 7.62,
+            "suspicious_rate": 0.1159
+          },
+          "Kolkata": {
+            "support": 11703,
+            "pct_of_dataset": 7.8,
+            "suspicious_rate": 0.1279
+          },
+          "London": {
+            "support": 11601,
+            "pct_of_dataset": 7.73,
+            "suspicious_rate": 0.1234
+          },
+          "Mumbai": {
+            "support": 11549,
+            "pct_of_dataset": 7.7,
+            "suspicious_rate": 0.122
+          },
+          "New York": {
+            "support": 11424,
+            "pct_of_dataset": 7.62,
+            "suspicious_rate": 0.1129
+          },
+          "Pune": {
+            "support": 11442,
+            "pct_of_dataset": 7.63,
+            "suspicious_rate": 0.1095
+          },
+          "Singapore": {
+            "support": 11651,
+            "pct_of_dataset": 7.77,
+            "suspicious_rate": 0.1227
+          },
+          "Zurich": {
+            "support": 11522,
+            "pct_of_dataset": 7.68,
+            "suspicious_rate": 0.1207
+          }
+        }
+      },
+      "amount_threshold_probes": {
+        "near_10L_threshold (900k-1M)": {
+          "count": 1775,
+          "suspicious_rate": 0.2879
+        }
+      },
+      "raw_id_cardinalities": {
+        "transaction_id_unique": 150000,
+        "sender_account_unique": 29806,
+        "receiver_account_unique": 29763,
+        "device_id_unique": 7000,
+        "ip_address_unique": 9734
+      },
+      "deterministic_proxies_detected": []
+    },
+    "feature_shortcuts": {
+      "benchmark_results": [
+        {
+          "test_name": "Test 1: Amount only",
+          "model_name": "Logistic Regression",
+          "roc_auc": 0.6162,
+          "pr_auc": 0.1885,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 1: Amount only",
+          "model_name": "Decision Tree (depth=3)",
+          "roc_auc": 0.6862,
+          "pr_auc": 0.2864,
+          "accuracy": 0.88,
+          "precision": 0.3333,
+          "recall": 0.0001,
+          "f1_score": 0.0001
+        },
+        {
+          "test_name": "Test 1: Amount only",
+          "model_name": "Decision Tree (depth=5)",
+          "roc_auc": 0.6908,
+          "pr_auc": 0.2951,
+          "accuracy": 0.88,
+          "precision": 0.5185,
+          "recall": 0.0023,
+          "f1_score": 0.0046
+        },
+        {
+          "test_name": "Test 2: Geography only",
+          "model_name": "Logistic Regression",
+          "roc_auc": 0.511,
+          "pr_auc": 0.1237,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 2: Geography only",
+          "model_name": "Decision Tree (depth=3)",
+          "roc_auc": 0.5058,
+          "pr_auc": 0.1216,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 2: Geography only",
+          "model_name": "Decision Tree (depth=5)",
+          "roc_auc": 0.5083,
+          "pr_auc": 0.1224,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 3: Crypto only",
+          "model_name": "Logistic Regression",
+          "roc_auc": 0.5322,
+          "pr_auc": 0.1274,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 3: Crypto only",
+          "model_name": "Decision Tree (depth=3)",
+          "roc_auc": 0.5322,
+          "pr_auc": 0.1274,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 3: Crypto only",
+          "model_name": "Decision Tree (depth=5)",
+          "roc_auc": 0.5322,
+          "pr_auc": 0.1274,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 4: Channel only",
+          "model_name": "Logistic Regression",
+          "roc_auc": 0.6467,
+          "pr_auc": 0.1716,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 4: Channel only",
+          "model_name": "Decision Tree (depth=3)",
+          "roc_auc": 0.6424,
+          "pr_auc": 0.1684,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 4: Channel only",
+          "model_name": "Decision Tree (depth=5)",
+          "roc_auc": 0.6467,
+          "pr_auc": 0.1716,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 5: Basic Transaction (Amt+Curr+Chan+Crypto+Geo)",
+          "model_name": "Logistic Regression",
+          "roc_auc": 0.6921,
+          "pr_auc": 0.2398,
+          "accuracy": 0.88,
+          "precision": 0.5833,
+          "recall": 0.0004,
+          "f1_score": 0.0008
+        },
+        {
+          "test_name": "Test 5: Basic Transaction (Amt+Curr+Chan+Crypto+Geo)",
+          "model_name": "Decision Tree (depth=3)",
+          "roc_auc": 0.7026,
+          "pr_auc": 0.2588,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 5: Basic Transaction (Amt+Curr+Chan+Crypto+Geo)",
+          "model_name": "Decision Tree (depth=5)",
+          "roc_auc": 0.7646,
+          "pr_auc": 0.3439,
+          "accuracy": 0.8832,
+          "precision": 0.5421,
+          "recall": 0.17,
+          "f1_score": 0.2588
+        },
+        {
+          "test_name": "Test 6: Temporal only (Hour+Day+Weekday)",
+          "model_name": "Logistic Regression",
+          "roc_auc": 0.5215,
+          "pr_auc": 0.1244,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 6: Temporal only (Hour+Day+Weekday)",
+          "model_name": "Decision Tree (depth=3)",
+          "roc_auc": 0.5308,
+          "pr_auc": 0.1273,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 6: Temporal only (Hour+Day+Weekday)",
+          "model_name": "Decision Tree (depth=5)",
+          "roc_auc": 0.5366,
+          "pr_auc": 0.1307,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 7: Infrastructure only (Device/IP reuse)",
+          "model_name": "Logistic Regression",
+          "roc_auc": 0.7299,
+          "pr_auc": 0.2568,
+          "accuracy": 0.8774,
+          "precision": 0.3643,
+          "recall": 0.0294,
+          "f1_score": 0.0544
+        },
+        {
+          "test_name": "Test 7: Infrastructure only (Device/IP reuse)",
+          "model_name": "Decision Tree (depth=3)",
+          "roc_auc": 0.6771,
+          "pr_auc": 0.2115,
+          "accuracy": 0.88,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0
+        },
+        {
+          "test_name": "Test 7: Infrastructure only (Device/IP reuse)",
+          "model_name": "Decision Tree (depth=5)",
+          "roc_auc": 0.7089,
+          "pr_auc": 0.2436,
+          "accuracy": 0.88,
+          "precision": 0.4898,
+          "recall": 0.004,
+          "f1_score": 0.0079
+        },
+        {
+          "test_name": "Test 8a: XGBoost on Amount only",
+          "model_name": "XGBoost (100 trees)",
+          "roc_auc": 0.7003,
+          "pr_auc": 0.3045,
+          "accuracy": 0.8797,
+          "precision": 0.4879,
+          "recall": 0.0427,
+          "f1_score": 0.0786
+        },
+        {
+          "test_name": "Test 8b: XGBoost on Basic Raw Features",
+          "model_name": "XGBoost (100 trees)",
+          "roc_auc": 0.7787,
+          "pr_auc": 0.3811,
+          "accuracy": 0.8864,
+          "precision": 0.5998,
+          "recall": 0.1599,
+          "f1_score": 0.2525
+        }
+      ],
+      "max_roc_auc": 0.7787,
+      "max_f1_score": 0.2588,
+      "has_trivial_shortcut": false
+    }
+  },
+  "verdict": {
+    "status": "WARNING",
+    "failures": [],
+    "warnings": [
+      "1457 sender accounts map to multiple sender customer IDs.",
+      "1451 receiver accounts map to multiple receiver customer IDs.",
+      "2292 shared accounts map to conflicting customer IDs across sender/receiver roles."
+    ],
+    "passes": [
+      "Transaction file exists.",
+      "Ground truth file exists.",
+      "Loaded datasets: 150,000 tx rows, 150,000 gt rows.",
+      "Exact 17 transaction columns match specification.",
+      "Ground-truth columns match specification.",
+      "Zero duplicate transaction IDs in transaction dataset.",
+      "Zero duplicate transaction IDs in ground truth dataset.",
+      "Zero duplicate rows in transaction dataset.",
+      "100% ID alignment between tx and gt (150,000 matching IDs).",
+      "Ground truth values are strictly binary (0 or 1).",
+      "Class distribution aligns with expected AML ratio (~12.00% suspicious).",
+      "Amount column is numeric.",
+      "All mandatory columns contain 0 null values.",
+      "Ground truth file has 0 null values.",
+      "All amounts are strictly positive (> 0).",
+      "Timestamps successfully parsed as ISO-8601 UTC. Span: 2026-10-01 00:00:17.491000+00:00 to 2026-10-31 23:59:59.569000+00:00 (31.0 days).",
+      "Realistic crypto/fiat overlap: legitimate crypto exists and suspicious non-crypto exists.",
+      "Zero non-crypto transactions have an unexpected crypto_wallet.",
+      "100% of crypto transactions have an associated crypto_wallet.",
+      "Amounts show realistic overlap between normal and suspicious classes (1,484,839.82 span overlap). No trivial cutoff separation.",
+      "Temporal distribution overlaps normally across entire timeframe (2026-10-01 to 2026-10-31).",
+      "Infrastructure sharing verified: 7,000 shared devices, 9,734 shared IPs.",
+      "Realistic device/IP overlap: 5594 devices and 5257 IPs host both legitimate and suspicious transactions.",
+      "Financial network interconnectedness confirmed: 29,571 accounts act as flow conduits (both send & receive).",
+      "Zero synthetic scenario marker keywords found (no SMURF, STR-FWD, SHELL, CRIME, MULE tags in names or IDs).",
+      "No single categorical feature acts as a deterministic 100% label proxy.",
+      "Shortcut Probe Passed: Simple features cannot classify AML transactions (Max ROC-AUC: 0.7787, Max F1: 0.2588). Complex AML features required."
+    ]
+  }
+}
