@@ -61,6 +61,7 @@ build/
 *.log
 logs/
 reports/
+research/
 
 # IDE / Operating System Artifacts
 .vscode/

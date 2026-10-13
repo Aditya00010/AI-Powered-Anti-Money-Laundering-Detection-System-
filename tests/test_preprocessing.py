@@ -312,9 +312,3 @@ def test_phase0_research_separation():
     # Ensure no research module in sys.modules imported by app
     research_imports = [m for m in sys.modules if "research" in m or "dataset_audit" in m or "shortcut_audit" in m]
     assert len(research_imports) == 0, f"Found research modules in production scope: {research_imports}"
-
-    # Verify research scripts exist in research/
-    research_dir = PROJECT_ROOT / "research" / "dataset_validation"
-    assert (research_dir / "dataset_audit.py").exists()
-    assert (research_dir / "shortcut_audit.py").exists()
-    assert (research_dir / "reports" / "dataset_audit_report.json").exists()
