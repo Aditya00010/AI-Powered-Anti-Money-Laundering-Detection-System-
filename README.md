@@ -81,7 +81,7 @@ Financial crime and money laundering present massive challenges for modern banki
 
 ## 3. System Architecture
 
-![Project Vigilance System Architecture](screenshots/system_architecture.jpg)
+![Project Vigilance System Architecture](screenshots/Project Vigilance System Architecture.jpg)
 
 Project Vigilance implements a decoupled, three-tier microservice architecture designed for low inference latency, robust security isolation, and database reliability.
 
