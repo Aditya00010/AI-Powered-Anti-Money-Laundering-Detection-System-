@@ -81,7 +81,7 @@ Financial crime and money laundering present massive challenges for modern banki
 
 ## 3. System Architecture
 
-![Project Vigilance System Architecture](screenshots/Project Vigilance System Architecture.jpg)
+![Project Vigilance System Architecture](screenshots/Project%20Vigilance%20System%20Architecture.png)
 
 Project Vigilance implements a decoupled, three-tier microservice architecture designed for low inference latency, robust security isolation, and database reliability.
 
@@ -222,7 +222,7 @@ Project codebase/
 ├── .gitignore                                 # Git exclusions for dependencies, models & env
 ├── README.md                                  # Root system documentation
 ├── screenshots/                               # System architecture and UI diagrams
-│   └── system_architecture.jpg                # Architectural system diagram
+│   └── Project Vigilance System Architecture.png # High-resolution architecture diagram
 │
 ├── configs/
 │   └── risk_scoring_v1.json                   # Scoring formula weights, anchors & risk tier baseline
