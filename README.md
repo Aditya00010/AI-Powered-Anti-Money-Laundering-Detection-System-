@@ -355,7 +355,7 @@ Project codebase/
 │   └── validate_risk_scoring.py               # Validates calibrated 80/20 formula on test split
 │
 ├── tests/                                     # Root Python Integration Tests (Pytest)
-└── docs/                                      # Architecture documentation & design specifications
+specifications
 ```
 
 ---
