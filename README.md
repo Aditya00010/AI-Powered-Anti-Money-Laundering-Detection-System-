@@ -217,7 +217,7 @@ flowchart TD
 ## 5. Repository Structure
 
 ```
-Project codebase/
+AI-Powered-Anti-Money-Laundering-Detection-System-/
 ├── .env.example                               # Safe template for environment configuration
 ├── .gitignore                                 # Git exclusions for dependencies, models & env
 ├── README.md                                  # Root system documentation
@@ -384,12 +384,12 @@ Follow these sequential steps to configure Project Vigilance on your local works
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/your-organization/project-vigilance.git
-cd project-vigilance/"Project codebase"
+git clone https://github.com/Aditya00010/AI-Powered-Anti-Money-Laundering-Detection-System-.git
+cd AI-Powered-Anti-Money-Laundering-Detection-System-
 ```
 
 ### Step 2: Configure Environment Variables
-Copy the template configuration file `.env.example` to create `.env` at the root of `Project codebase`:
+Copy the template configuration file `.env.example` to create `.env` at the repository root:
 
 ```bash
 # On Windows PowerShell
@@ -462,7 +462,7 @@ This provisions four testing accounts in your local MongoDB instance with passwo
 
 ## 8. Environment Variables
 
-The application relies on configuration variables defined in `.env` located at the root of `Project codebase/`.
+The application relies on configuration variables defined in `.env` located at the repository root.
 
 | Variable Name | Purpose | Example / Placeholder | Required? | Default in Code |
 |---|---|---|---|---|
@@ -485,7 +485,7 @@ The application relies on configuration variables defined in `.env` located at t
 
 ## 9. Running the Application
 
-To run the complete system locally, open four separate terminal windows in `Project codebase`:
+To run the complete system locally, open four separate terminal windows in the repository root:
 
 ### Terminal 1: Start Databases
 Ensure MongoDB and Neo4j are running locally:
@@ -493,7 +493,7 @@ Ensure MongoDB and Neo4j are running locally:
 - **Neo4j**: Bolt port `7687` (HTTP browser interface at `http://localhost:7474`)
 
 ### Terminal 2: Start Python ML Microservice
-From `Project codebase/ml-service`:
+From `ml-service/`:
 ```bash
 # Ensure your virtual environment is active
 # e.g., ..\venv\Scripts\Activate.ps1
@@ -502,7 +502,7 @@ python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 *Verify readiness: Open `http://localhost:8000/health` in your browser. The response should display `{"status":"ok","models_loaded":{"xgboost":true,"isolation_forest":true}}`.*
 
 ### Terminal 3: Start Node.js Express Backend
-From `Project codebase/backend`:
+From `backend/`:
 ```bash
 npm run dev
 # Or for standard execution:
@@ -511,7 +511,7 @@ node server.js
 *Backend runs on `http://localhost:5000`. Verify readiness by visiting `http://localhost:5000/health` (Express & MongoDB status) and `http://localhost:5000/health/ml` (Express-to-FastAPI bridge status).*
 
 ### Terminal 4: Start React Frontend
-From `Project codebase/frontend`:
+From `frontend/`:
 ```bash
 npm run dev
 ```
@@ -971,7 +971,7 @@ npm test
 The Python test suite verifies FastAPI REST endpoints, schema validation, rejection of raw identifiers and NaNs, feature ordering enforcement, piecewise linear Isolation Forest calibration, and chronological train/test splits.
 
 ```bash
-# From Project codebase root with virtual environment activated:
+# From repository root with virtual environment activated:
 python -m pytest tests
 ```
 *Executes `pytest tests` (78 passed, 0 failed).*
