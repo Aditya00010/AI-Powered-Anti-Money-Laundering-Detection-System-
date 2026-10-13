@@ -57,9 +57,10 @@ build/
 .vite/
 .eslintcache
 
-# General Logs
+# General Logs & Reports
 *.log
 logs/
+reports/
 
 # IDE / Operating System Artifacts
 .vscode/

@@ -29,11 +29,7 @@
 13. [API Documentation](#13-api-documentation)
 14. [User Roles and Permissions (RBAC)](#14-user-roles-and-permissions-rbac)
 15. [Testing and Quality Assurance](#15-testing-and-quality-assurance)
-16. [Troubleshooting Guide](#16-troubleshooting-guide)
-17. [Security Considerations](#17-security-considerations)
-18. [Limitations and Future Roadmap](#18-limitations-and-future-roadmap)
-19. [Screenshots and Demo](#19-screenshots-and-demo)
-20. [Contributing, License, and Acknowledgments](#20-contributing-license-and-acknowledgments)
+16. [Contributing, License, and Acknowledgments](#16-contributing-license-and-acknowledgments)
 
 ---
 
@@ -84,6 +80,8 @@ Financial crime and money laundering present massive challenges for modern banki
 ---
 
 ## 3. System Architecture
+
+![Project Vigilance System Architecture](screenshots/system_architecture.jpg)
 
 Project Vigilance implements a decoupled, three-tier microservice architecture designed for low inference latency, robust security isolation, and database reliability.
 
@@ -223,25 +221,21 @@ Project codebase/
 ├── .env.example                               # Safe template for environment configuration
 ├── .gitignore                                 # Git exclusions for dependencies, models & env
 ├── README.md                                  # Root system documentation
+├── screenshots/                               # System architecture and UI diagrams
+│   └── system_architecture.jpg                # Architectural system diagram
 │
 ├── configs/
 │   └── risk_scoring_v1.json                   # Scoring formula weights, anchors & risk tier baseline
 │
 ├── data/
 │   ├── input/                                 # Runtime upload directory for test batches
+│   │   └── .gitkeep
 │   ├── output/                                # Scoring output exports
+│   │   └── .gitkeep
 │   ├── training/                              # Training dataset files
-│   │   ├── aml_150k_v2.csv                    # Cleaned 150,000 transaction dataset
-│   │   └── aml_150k_v2_ground_truth.csv       # Ground truth fraud labels (is_laundering)
+│   │   └── .gitkeep
 │   └── processed/                             # Processed pipeline artifacts
-│       ├── aml_150k_clean.csv                 # Validated schema records
-│       ├── aml_150k_features.csv              # 74 tabular engineered features
-│       ├── aml_150k_graph_features.csv        # 84 combined features (74 tabular + 10 graph)
-│       └── graph_features/                    # Exported offline graph metrics
-│           ├── account_cycles.csv             # Cypher cycle detection counts & shortest lengths
-│           ├── account_degree.csv             # In/out degree metrics per account
-│           ├── account_louvain.csv            # Louvain community IDs per account
-│           └── account_pagerank.csv           # PageRank scores per account
+│       └── .gitkeep
 │
 ├── models/                                    # Serialized ML artifacts & metadata
 │   ├── xgboost_v3_graph.joblib                # Serialized XGBoost model binary
@@ -304,12 +298,6 @@ Project codebase/
 │   │   │   ├── InvestigationCase.js           # Investigation case dossier & notes
 │   │   │   └── User.js                        # User authentication credentials & roles
 │   │   ├── routes/                            # Express REST route definitions
-│   │   │   ├── analysisRoutes.js              # /api/v1/analysis routes
-│   │   │   ├── authRoutes.js                  # /api/v1/auth routes
-│   │   │   ├── configurationRoutes.js         # /api/v1/configuration routes
-│   │   │   ├── healthRoutes.js                # /health routes
-│   │   │   ├── investigationRoutes.js         # /api/v1/investigations routes
-│   │   │   └── userRoutes.js                  # /api/v1/users routes
 │   │   ├── services/
 │   │   │   ├── configurationService.js        # Active threshold cache & resolver
 │   │   │   ├── investigationService.js        # Case workflow orchestrator
@@ -318,13 +306,6 @@ Project codebase/
 │   │       ├── errors.js                      # Custom HTTP error hierarchy
 │   │       └── explainabilityHelper.js        # Deterministic evidence & mathematical breakdown
 │   └── tests/                                 # Backend automated test suite (node --test)
-│       ├── api.test.js                        # Route registration & security tests
-│       ├── auth.test.js                       # Authentication & role guard tests
-│       ├── configuration.test.js              # Threshold validation tests
-│       ├── explainability.test.js             # Mathematical consistency & evidence tests
-│       ├── integration.test.js                # Live Express -> FastAPI -> MongoDB test
-│       ├── investigations.test.js             # Case lifecycle & audit trail tests
-│       └── mlClient.test.js                   # MLClient timeout & error handling tests
 │
 ├── frontend/                                  # React / Vite Surveillance Workbench
 │   ├── package.json                           # Frontend dependencies & npm scripts
@@ -334,12 +315,6 @@ Project codebase/
 │   │   ├── main.jsx                           # React DOM mount point
 │   │   ├── App.jsx                            # Root application component
 │   │   ├── api/                               # Axios HTTP abstractions with JWT interceptors
-│   │   │   ├── client.js                      # Base axios instance
-│   │   │   ├── authApi.js                     # Authentication API methods
-│   │   │   ├── analysisApi.js                 # Transaction analysis API methods
-│   │   │   ├── investigationApi.js            # Case management API methods
-│   │   │   ├── configurationApi.js            # Threshold configuration API methods
-│   │   │   └── healthApi.js                   # System health API methods
 │   │   ├── context/
 │   │   │   └── AuthContext.jsx                # Global authentication & user role context
 │   │   ├── data/
@@ -366,11 +341,6 @@ Project codebase/
 │   │   └── styles/
 │   │       └── index.css                      # Scoped responsive layout CSS
 │   └── tests/                                 # Frontend automated test suite (Vitest)
-│       ├── App.test.jsx                       # Navigation & route protection tests
-│       ├── AnalyzeTransaction.test.jsx        # Evaluation form & preset tests
-│       ├── Explainability.test.jsx            # Evidence presentation & dossier tests
-│       ├── Investigations.test.jsx            # Case management UI workflow tests
-│       └── ...                                # Additional component & page test suites
 │
 ├── scripts/                                   # Standalone Offline Ingestion & Training Scripts
 │   ├── neo4j_ingest.py                        # Ingests 150k transactions & entities into Neo4j
@@ -385,13 +355,6 @@ Project codebase/
 │   └── validate_risk_scoring.py               # Validates calibrated 80/20 formula on test split
 │
 ├── tests/                                     # Root Python Integration Tests (Pytest)
-│   ├── test_fastapi_ml_service.py             # FastAPI REST endpoints & error handling
-│   ├── test_features.py                       # Feature extraction & schema integrity tests
-│   ├── test_graph_merge.py                    # Graph feature merge integrity tests
-│   ├── test_inference.py                      # AMLInferenceEngine scoring & validation tests
-│   └── test_preprocessing.py                  # Ingestion, validation & timestamp parsing tests
-│
-├── reports/                                   # Model training & audit evaluation reports
 └── docs/                                      # Architecture documentation & design specifications
 ```
 
@@ -517,9 +480,6 @@ The application relies on configuration variables defined in `.env` located at t
 | `NEO4J_PASSWORD` | Neo4j database password | `your_secure_neo4j_password` | **Yes** (For Graph Scripts) | None |
 | `NEO4J_DATABASE` | Target Neo4j database name | `neo4j` | No | `neo4j` |
 | `BATCH_SIZE` | Chunk size for offline graph batch ingestion | `5000` | No | `5000` |
-
-> [!CAUTION]
-> Never commit active production credentials or secret keys to version control. The `.gitignore` file excludes `.env`. Always generate a cryptographically strong secret for `JWT_SECRET` in production environments.
 
 ---
 
@@ -682,15 +642,29 @@ The pipeline extracts **84 model-approved features** grouped into distinct behav
 - **Features Evaluated**: 80 continuous and topological features (excludes nominal community IDs `sender_louvain_community_id`, `receiver_louvain_community_id` and redundant customer counts)
 - **Hyperparameters**: `n_estimators: 200`, `max_samples: 256`, `contamination: auto` (offset = `-0.50`), `random_state: 42`
 - **Normalization Formula**:
-  Raw anomaly score $s(x) = -\text{score\_samples}(x)$ is mapped to $[0, 100]$ using piecewise linear calibration anchored at theoretical decision boundary ($0.50$) and empirical distribution bounds:
-  $$\text{IF\_SCORE} = \begin{cases} \text{clip}\left(\frac{s(x) - 0.35}{0.50 - 0.35} \times 50.0,\, 0.0,\, 50.0\right) & \text{if } s(x) < 0.50 \\ \text{clip}\left(50.0 + \frac{s(x) - 0.50}{0.70 - 0.50} \times 50.0,\, 50.0,\, 100.0\right) & \text{if } s(x) \ge 0.50 \end{cases}$$
+  The raw anomaly score `s(x) = -score_samples(x)` is mapped to the `0–100` scale using piecewise linear calibration anchored at the theoretical decision boundary (`0.50`) and empirical distribution bounds (`0.35` inlier baseline, `0.70` extreme outlier):
+
+  ```text
+  If s(x) < 0.50:
+      IF_SCORE = clip(((s(x) - 0.35) / (0.50 - 0.35)) * 50.0, 0.0, 50.0)
+
+  If s(x) >= 0.50:
+      IF_SCORE = clip(50.0 + ((s(x) - 0.50) / (0.70 - 0.50)) * 50.0, 50.0, 100.0)
+  ```
+
 - **Role & Complementary Coverage**:
   Isolation Forest achieves an unsupervised ROC-AUC of `0.7282` on the 30k test split. Crucially, it flags **135 confirmed AML cases that fell below XGBoost's 0.50 threshold**, providing essential zero-day defense against unmodeled layering patterns.
 
 ### Authoritative Risk Scoring Formula
 The final normalized risk score is computed by linear combination:
 
-$$\text{FINAL\_RISK\_SCORE} = \text{clip}(0.80 \times \text{XGB\_SCORE} + 0.20 \times \text{IF\_SCORE},\, 0.0,\, 100.0)$$
+```text
+FINAL_RISK_SCORE = clip(0.80 * XGB_SCORE + 0.20 * IF_SCORE, 0.0, 100.0)
+
+where:
+  - XGB_SCORE = xgb_probability * 100.0   (Supervised Typology Likelihood, 0–100)
+  - IF_SCORE  = Calibrated Anomaly Score  (Unsupervised Distribution Anomaly, 0–100)
+```
 
 - **Weight Justification**: An 80/20 balance prioritizes XGBoost's high precision (97.09%) and low false-positive rate (0.19%) to keep compliance alert queues manageable, while retaining a 20% unsupervised contribution to detect structural outliers and zero-day anomalies.
 - **Standalone Graph & Rule Weights**: Assigned `0.00` to prevent double-counting. Graph features (PageRank, degrees, cycles) and regulatory thresholds are already directly incorporated into the 84-feature input vectors of the ML models.
@@ -1004,70 +978,7 @@ python -m pytest tests
 
 ---
 
-## 16. Troubleshooting Guide
-
-| Issue | Likely Cause | Verified Solution |
-|---|---|---|
-| **`ECONNREFUSED 127.0.0.1:27017`** | MongoDB service is not running. | Start MongoDB using your local service manager (`net start MongoDB` on Windows, or start via MongoDB Compass / Docker). |
-| **`ECONNREFUSED 127.0.0.1:8000`** | Python ML service is offline. | Activate the virtual environment and run `python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload` from `ml-service/`. |
-| **`Missing model features` (HTTP 400)** | Transaction payload lacks one or more of the 84 required features. | The ML engine strictly rejects silent imputation. Ensure all 84 approved features are supplied, or use one of the presets from `sampleTransactions.js`. |
-| **`Raw identifier detected in input` (HTTP 400)** | Payload contains raw identifiers (`sender_account`, `ip_address`, etc.) inside the feature dictionary. | Place identifiers at the root level of the payload (e.g. `transaction_id`), not inside the numeric `features` dictionary. |
-| **`Neo4j ServiceUnavailable`** | Neo4j service is offline or listening on an unexpected port. | Verify that Neo4j is running on `bolt://127.0.0.1:7687` or `neo4j://127.0.0.1:7687` and check credentials in `.env`. |
-| **`ForbiddenError: Access denied` (HTTP 403)** | Logged-in user role lacks permission for the requested endpoint. | Verify the user role. Administrative operations (`/configuration`, `/users`) require logging in as `admin`. Case actions require `investigator` or `compliance_officer`. |
-| **Frontend displays `Failed to fetch` or network error** | Backend API is not running on port 5000. | Check the Terminal 3 window running `backend/server.js` and verify it displays `Server running on port 5000`. |
-| **Python import error: `No module named 'app'`** | Running uvicorn from the wrong working directory. | Change directory to `ml-service/` before starting uvicorn, or set `PYTHONPATH=.`. |
-
----
-
-## 17. Security Considerations
-
-- **Secret Management**: Never commit active `.env` files or API secrets to GitHub. Always override placeholder secrets with strong, unique environment variables before deploying to production.
-- **Credential Storage**: User passwords are encrypted using `bcryptjs` with 10 salt rounds. Plaintext passwords are never saved. The Mongoose `User` schema explicitly deletes `password_hash` during JSON serialization.
-- **Input Sanitization & Score Tampering Defense**: In `analysisController.js`, client payloads are stripped of `final_risk_score`, `risk_tier`, `xgb_score`, etc., preventing malicious users from injecting forged scores.
-- **Label Leakage & Overfitting Prevention**: The ML engine explicitly rejects raw identity attributes (`sender_account`, `receiver_account`, `device_id`, `ip_address`) from model inputs, ensuring scores reflect statistical behavior rather than entity memorization.
-- **Immutable Audit Logging**: Case lifecycle events (`CASE_CREATED`, `STATUS_CHANGED`, `NOTE_ADDED`, etc.) are written to the `InvestigationAction` collection in an append-only structure. The API does not provide mutation or deletion endpoints for audit records.
-- **Regulatory Guardrails**: All risk scores, classifications, and evidence categorizations are advisory indicators intended to assist human compliance officers. The system does not make automated legal determinations.
-
----
-
-## 18. Limitations and Future Roadmap
-
-### Current Limitations
-- **Offline Graph Ingestion**: Graph algorithms (PageRank, Louvain, Cycle detection) are executed offline using batch scripts (`scripts/neo4j_*.py`). The online REST API evaluates precomputed graph metrics rather than executing real-time Cypher traversals.
-- **Explainability Latency Trade-off**: Per-request SHAP kernel calculations are avoided in the live API path to maintain sub-50ms latency. The system uses deterministic sub-model contributions, velocity ratios, and compliance signals instead.
-- **Single-Node Database Deployment**: The default configuration targets local single-node instances of MongoDB and Neo4j, suitable for development and evaluation.
-
-### Planned Enhancements
-- [ ] **Streaming Graph Ingestion**: Implement Apache Kafka or RabbitMQ event streaming to update Neo4j relationships and dynamic graph metrics in near-real-time.
-- [ ] **Fast SHAP Approximation**: Integrate TreeSHAP C++ bindings directly into the FastAPI service for sub-100ms per-feature local attribution plots.
-- [ ] **Automated SAR / STR Generation**: Add an export module that packages investigation cases into standardized regulatory report drafts (such as FinCEN SAR or FIU-IND STR XML formats) for compliance officer review.
-- [ ] **Distributed Clustering & Dockerization**: Provide multi-container Docker Compose and Kubernetes deployment manifests for production scaling.
-
----
-
-## 19. Screenshots and Demo
-
-The surveillance workbench includes interactive views for monitoring, evaluation, and case management:
-
-### 1. Surveillance Dashboard
-*Overview of incoming transaction volume, risk tier distribution, and active investigation queues.*
-> *Screenshot placeholder: Add UI screenshot of the main dashboard to `docs/images/dashboard.png`.*
-
-### 2. Transaction Evaluation & Preset Testing
-*Interface allowing investigators to enter custom features or test curated scenarios (Nominal Inlier, CTR Structuring, or Layering Cycle Loop).*
-> *Screenshot placeholder: Add UI screenshot of the evaluation page to `docs/images/analyze.png`.*
-
-### 3. Investigation Dossier & SVG Money Flow Graph
-*Comprehensive risk report displaying the 80/20 score breakdown, sub-model signals, behavioral metrics, and interactive SVG topological diagram highlighting circular layering loops.*
-> *Screenshot placeholder: Add UI screenshot of the analysis result page to `docs/images/dossier.png`.*
-
-### 4. Case Management & Audit Trail
-*Case tracking ledger with priority tags, status updates, officer assignment, and tamper-resistant audit logs.*
-> *Screenshot placeholder: Add UI screenshot of the case detail view to `docs/images/cases.png`.*
-
----
-
-## 20. Contributing, License, and Acknowledgments
+## 16. Contributing, License, and Acknowledgments
 
 ### Contributing
 Contributions to Project Vigilance are welcome:
